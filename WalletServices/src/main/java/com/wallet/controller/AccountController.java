@@ -1,9 +1,14 @@
 package com.wallet.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -150,6 +155,30 @@ public class AccountController {
 
 	}
 
-	//
+	//Download the excell
+	@GetMapping("/downloadexcell")
+	public ResponseEntity<InputStreamResource> downloadExcellFile() throws IOException {
+		List<AccountEntity> allData = accountSerivices.findAllDetails();
+//		for(AccountEntity d:allData)
+//			System.out.println(d);
+ByteArrayInputStream in = ExcelGenerator.studentToExcel(allData);
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "attachment; filename=Student1.xlsx");
+		return ResponseEntity
+				.ok()
+			.headers(headers)
+				.body(new InputStreamResource(in));
+	
+		
+		//return allData;
+		
+		
+	}
+	@GetMapping("findUserByName/{name}")
+	public AccountEntity findUserByName(@PathVariable String name) {
+		   AccountEntity findUserByName = accountSerivices.findUserByName(name);
+		   return findUserByName;
+	}
 
 }

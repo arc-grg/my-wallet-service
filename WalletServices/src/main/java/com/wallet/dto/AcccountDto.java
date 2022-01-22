@@ -33,6 +33,8 @@ public class AcccountDto {
 	public void setBalance(Long balance) {
 		this.balance = balance;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "AccountBean [accountNumber=" + accountNumber + ", userName=" + userName + ", gender=" + gender

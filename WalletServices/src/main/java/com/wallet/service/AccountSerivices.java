@@ -2,6 +2,7 @@ package com.wallet.service;
 //// Added this line for teting git 
 // Again added for testing
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -83,4 +84,21 @@ public class AccountSerivices {
 			throw new AccountNotFound(accountNumber+" This account number does no exist");
 
 	}
+
+	public List<AccountEntity> findAllDetails() {
+		List<AccountEntity> data = accountRepository.findAll();
+		return data;
+		
+	}
+	public AccountEntity findUserByName(String name) {
+		AccountEntity findUserByUserName = accountRepository.findUserByUserName(name);
+		return findUserByUserName;
+		
+	}
+
+	public AccountSerivices(AccountRepository accountRepository) {
+		super();
+		this.accountRepository = accountRepository;
+	}
+	
 }

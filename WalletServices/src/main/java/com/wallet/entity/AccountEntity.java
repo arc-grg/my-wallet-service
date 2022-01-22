@@ -44,6 +44,20 @@ public class AccountEntity {
 	public void setBalance(float balance) {
 		this.balance = balance;
 	}
+	
+
+	public AccountEntity(long accountNumber, String userName, String gender, float balance) {
+		super();
+		this.accountNumber = accountNumber;
+		this.userName = userName;
+		this.gender = gender;
+		this.balance = balance;
+	}
+
+	public AccountEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public String toString() {
